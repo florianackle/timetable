@@ -1,0 +1,17 @@
+/* Bild für Pfeil nach links (im Button) */
+.btn-arrow-left {
+    width: 50px;
+     height: 30px;
+    background-repeat:no-repeat;
+    background-position : center center;
+    background-image: url(../images/arrow-left.png);
+}
+
+/* Bild für Pfeil nach rechts (im Button) */
+.btn-arrow-right {
+    width: 50px;
+     height: 30px;
+    background-repeat:no-repeat;
+    background-position : center center;
+    background-image: url(../images/arrow-right.png);
+}
