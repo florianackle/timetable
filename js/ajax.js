@@ -1,6 +1,8 @@
 $('#beruf-dropdown').append("<option value='-1'> Wählen Sie einen Beruf </option>");
 $('#klasse-dropdown').append("<option value='-5'> Wählen Sie eine Klasse </option>");
-var today = moment().week() + "-" + moment().year();
+
+//Heutiger Wochentag (0=Sonntag, 1=Montag, 2=Dienstag etc...)
+var day = "";
 
 $.getJSON("http://sandbox.gibm.ch/berufe.php", function(data) {
     var items = [];
@@ -12,7 +14,7 @@ getClass("");
 
 //Falls sich etwas ändert im dropdown "beruf-dropdown"
 //Ein Beruf wurde gewählt
-$(document).on('change', '#beruf-dropdown', function() {
+$('#beruf-dropdown').on('change', function() {
     //Tafel und Klassenauswahl leeren
     $('.calendarrow').html("");
     $('#klasse-dropdown').html("");
@@ -26,7 +28,7 @@ $(document).on('change', '#beruf-dropdown', function() {
 });
 //Falls sich etwas ändert im dropdown "klasse-dropdown"
 //Eine Klasse wurde gewählt
-$(document).on('change', '#klasse-dropdown', function() {
+$('#klasse-dropdown').on('change', function() {
     fillTafel();
 })
 //Zeigt alle Klassen an
@@ -42,7 +44,7 @@ function getClass(bid) {
         } else if (data.length == 0) { //Falls es keine Klassen gibt
             //Leeren der vorherigen Tabelle
             $('.calendarrow').html("");
-            $('.calendarrow').append("<tr><td colspan='5'>Für diesen Beruf gibt es zurzeit keine Klasse.</td></tr>");
+            $('.calendarrow').append("<tr><td colspan='7'>Für diesen Beruf gibt es zurzeit keine Klasse.</td></tr>");
         }
         var items = [];
         $.each(data, function(key, val) {
@@ -53,24 +55,25 @@ function getClass(bid) {
         }
     });
 }
-
 //Wenn eine Klasse ausgewählt wurde
 //Einfüllen der Tafel in die Tabelle
-function getTafel(kid) {
+function setTafel(kid) {
     $.getJSON("http://sandbox.gibm.ch/tafel.php/" + kid, function(data) {
         var items = [];
         $.each(data, function(key, val) {
-            $('.calendarrow').append("<tr><th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
+            day == val.tafel_wochentag;
+            setDay();
+            $('.calendarrow').append("<tr><th>" + val.tafel_datum + "</th>" + "<th>" + weekday + "</th>" + "<th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
         });
     });
 }
 //Falls es nur eine Klasse gibt für den Beruf
-//durch "getTafel(kid)" Einfüllen der Tafel in die Tabelle
+//durch "setTafel(kid)" Einfüllen der Tafel in die Tabelle
 function fillTafel() {
     $('.calendarrow').html("");
     var kid = "";
     if ($('#klasse-dropdown').val() != -5) {
         kid = "?klasse_id=" + $('#klasse-dropdown').val() + "&woche=" + today;
     }
-    getTafel(kid);
+    setTafel(kid);
 }
