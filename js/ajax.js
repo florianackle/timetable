@@ -1,9 +1,14 @@
+// 1.4 Select-Boxen mit Aufforderung zur Auswahl
+// 4.4 Die gewählte Berufsgruppe ist ersichtlich.
+// 5.4 Die gewählte Berufsgruppe und Klasse ersichtlich.
 $('#beruf-dropdown').append("<option value='-1'> Wählen Sie einen Beruf </option>");
 $('#klasse-dropdown').append("<option value='-5'> Wählen Sie eine Klasse </option>");
 
 //Heutiger Wochentag (0=Sonntag, 1=Montag, 2=Dienstag etc...)
 var day = "";
 
+// 2.1 Datenabfrage
+// 4.1 Alle Berufsgruppen sind vorhanden und sortiert
 $.getJSON("http://sandbox.gibm.ch/berufe.php", function(data, status, xhr) {
     //HTTP Status überprüfen (200 = OK)
     if (xhr.status == 200) {
@@ -13,12 +18,13 @@ $.getJSON("http://sandbox.gibm.ch/berufe.php", function(data, status, xhr) {
             $('#beruf-dropdown').append("<option value='" + val.beruf_id + "'>" + val.beruf_name + "</option>");
         });
     }
-    //Falls nicht ok, Error Meldungen in die Konsole
+    // Falls nicht ok, Error Meldungen in die Konsole
+    // 2.2 Fehlermeldung, wenn AJAX-Request nicht funktioniert.
     else {
-        console.log(xhr.status);
-        console.log(xhr.response);
-        console.log(xhr.responseText)
-        console.log(xhr.statusText);
+        alert(xhr.status);
+        alert(xhr.response);
+        alert(xhr.responseText)
+        alert(xhr.statusText);
     }
 });
 //Sobald alle Berufe geladen wurden, getClass ausführen
@@ -26,8 +32,10 @@ getClass("");
 
 //Falls sich etwas ändert im dropdown "beruf-dropdown"
 //Ein Beruf wurde gewählt
+// 4.2 Bei jedem Wechsel der Berufsgruppe werden die Daten in der Klassen-Auswahl neu geladen
 $('#beruf-dropdown').on('change', function() {
     //Tafel und Klassenauswahl leeren
+    // 4.3 Der Stundenplan wird ausgeblendet, wenn die Berufsgruppe verändert wird.
     $('.calendarrow').html("");
     $('#klasse-dropdown').html("");
     var bid = "";
@@ -46,7 +54,7 @@ $('#klasse-dropdown').on('change', function() {
 //Zeigt alle Klassen im Dropdown an
 //Falls nur eine Klasse vorhanden ist, wähle diese aus
 function getClass(bid) {
-    //getJSON Abfrage
+    // 2.1 Datenabfrage
     $.getJSON("http://sandbox.gibm.ch/klassen.php" + bid, function(data, status, xhr) {
         //HTTP Status überprüfen (200 = OK)
         if (xhr.status == 200) {
@@ -61,6 +69,7 @@ function getClass(bid) {
                 $('.calendarrow').html("");
                 $('.calendarrow').append("<tr><td colspan='7'>Für diesen Beruf gibt es zurzeit keine Klasse.</td></tr>");
             }
+            // 5.2 Alle Klassen sind vorhanden und sortiert
             var items = [];
             $.each(data, function(key, val) {
                 $('#klasse-dropdown').append("<option value='" + val.klasse_id + "'>" + val.klasse_longname + "</option>");
@@ -69,19 +78,22 @@ function getClass(bid) {
                 fillTafel();
             }
         }
-        //Falls nicht ok, Error Meldungen in die Konsole
+        // Falls nicht ok, Error Meldungen in die Konsole
+        // 2.2 Fehlermeldung, wenn AJAX-Request nicht funktioniert.
         else {
-            console.log(xhr.status);
-            console.log(xhr.response);
-            console.log(xhr.responseText)
-            console.log(xhr.statusText);
+            alert(xhr.status);
+            alert(xhr.response);
+            alert(xhr.responseText)
+            alert(xhr.statusText);
         }
     });
 
 }
 //Wenn eine Klasse ausgewählt wurde
 //Einfüllen der Tafel in die Tabelle
+// 5.3 Beim Wechsel der Klasse wird der Stundenplan der Klasse in der aktuellen Woche angezeigt.
 function setTafel(kid) {
+    // 2.1 Datenabfrage
     $.getJSON("http://sandbox.gibm.ch/tafel.php/" + kid, function(data, status, xhr) {
         //HTTP Status überprüfen (200 = OK)
         if (xhr.status == 200) {
@@ -92,16 +104,18 @@ function setTafel(kid) {
             } else {
                 $.each(data, function(key, val) {
                     day == val.tafel_wochentag;
+                    // 6.1 Datum, Wochentag, von, bis, Lehrer, Fach, Zimmer vorhanden
                     $('.calendarrow').append("<tr><th>" + val.tafel_datum + "</th>" + "<th>" + weekday[val.tafel_wochentag] + "</th>" + "<th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
                 });
             }
         }
-        //Falls nicht ok, Error Meldungen in die Konsole
+        // Falls nicht ok, Error Meldungen in die Konsole
+        // 2.2 Fehlermeldung, wenn AJAX-Request nicht funktioniert.
         else {
-            console.log(xhr.status);
-            console.log(xhr.response);
-            console.log(xhr.responseText)
-            console.log(xhr.statusText);
+            alert(xhr.status);
+            alert(xhr.response);
+            alert(xhr.responseText)
+            alert(xhr.statusText);
         }
     });
 }
