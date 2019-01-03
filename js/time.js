@@ -1,34 +1,11 @@
 //Kalenderwoche + Jahr
 var today = moment().week() + "-" + moment().year();
-var weekday = "";
 
-function setDay() {
-    switch (day) {
-        case 0:
-                weekday = "Sonntag";
-                break;
-
-        case 1:
-                weekday = "Montag";
-                break;
-
-        case 2:
-                weekday = "Dienstag";
-                break;
-
-        case 3:
-                weekday = "Mittwoch";
-                break;
-
-        case 4:
-                weekday = "Donnerstag";
-                break;
-
-        case 5:
-                weekday = "Freitag";
-                break;
-
-        case 6:
-                weekday = "Samstag";
-    }
-}
+const weekday = new Array(7);
+weekday[0] = "Sonntag";
+weekday[1] = "Montag";
+weekday[2] = "Dienstag";
+weekday[3] = "Mittwoch";
+weekday[4] = "Donnerstag";
+weekday[5] = "Freitag";
+weekday[6] = "Samstag";
