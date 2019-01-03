@@ -1,14 +1,8 @@
 /* Die Kommentare dienen zur Verständnis, wieso trotz Bootstrap zusätzlich
 ein eigenes CSS verwendet wurde. */
-
 /* Hintergrundbild */
 body {
     background-image: url("../images/bg1.jpg");
-}
-
-/* Die Farbe des Bildes ändert sich, falls die Maus über den btn.default fährt  */
-.btn-default:hover {
-    color: darkgrey;
 }
 
 /* Damit der Footer immer am Ende der Seite ist */
