@@ -87,10 +87,14 @@ function setTafel(kid) {
         if (xhr.status == 200) {
             console.log("Tafel konnte erfolgreich geladen werden");
             var items = [];
-            $.each(data, function(key, val) {
-                day == val.tafel_wochentag;
-                $('.calendarrow').append("<tr><th>" + val.tafel_datum + "</th>" + "<th>" + weekday[val.tafel_wochentag] + "</th>" + "<th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
-            });
+            if (data.length == 0) {
+                $('.calendarrow').append("<tr><th colspan='7'> In dieser Woche wurden keine Daten gefunden. </br>Eventuell findet in dieser woche kein Unterricht statt, oder es wurden für diesen Zeitraum noch keine Daten eingegeben. </th></tr>");
+            } else {
+                $.each(data, function(key, val) {
+                    day == val.tafel_wochentag;
+                    $('.calendarrow').append("<tr><th>" + val.tafel_datum + "</th>" + "<th>" + weekday[val.tafel_wochentag] + "</th>" + "<th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
+                });
+            }
         }
         //Falls nicht ok, Error Meldungen in die Konsole
         else {
