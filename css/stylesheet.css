@@ -1,3 +1,9 @@
 .btn-default:hover {
     color: darkgrey;
 }
+
+#footer {
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+}
