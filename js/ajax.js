@@ -105,6 +105,7 @@ function setTafel(kid) {
                 $.each(data, function(key, val) {
                     day == val.tafel_wochentag;
                     // 6.1 Datum, Wochentag, von, bis, Lehrer, Fach, Zimmer vorhanden
+                    // 6.6 Jahr und Wochennummer wird ausgegeben
                     $('.calendarrow').append("<tr><th>" + val.tafel_datum + "</th>" + "<th>" + weekday[val.tafel_wochentag] + "</th>" + "<th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
                 });
             }
