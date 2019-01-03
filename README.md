@@ -8,3 +8,4 @@ aktuellen clientseitigen Web-Technologien zur Verfügung.
 Als Datenquelle dient Ihnen eine bestehende JSON-Schnittstelle, welche Sie über AJAX ansprechen
 können.
 
+https://sites.google.com/a/gibmit.ch/modul-133-stoecklin-2018-hs/projektabeit
