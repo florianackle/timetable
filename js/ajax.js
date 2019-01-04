@@ -2,7 +2,7 @@
 // 4.4 Die gewählte Berufsgruppe ist ersichtlich.
 // 5.4 Die gewählte Berufsgruppe und Klasse ersichtlich.
 $('#beruf-dropdown').append("<option value='-1'> Wählen Sie einen Beruf </option>");
-$('#klasse-dropdown').append("<option value='-5'> Wählen Sie eine Klasse </option>");
+$('#klasse-dropdown').append("<option value='-5' disabled> Wählen Sie eine Klasse </option>");
 
 //Heutiger Wochentag (0=Sonntag, 1=Montag, 2=Dienstag etc...)
 var day = "";

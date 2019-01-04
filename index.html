@@ -55,11 +55,11 @@
                 <div class="d-flex flex-rowp-1 p-1">
                     <!-- Button für eine Woche zurück -->
                     <div class="p-1">
-                        <button type="button" class="btn btn-dark px-4" id="minusone"><img src="./images/arrow-left.png" height="30"></button>
+                        <button type="button" class="btn btn-dark px-4" id="minusone" data-toggle="popover" data-trigger="hover" data-content="Eine Woche zurück"><img src="./images/arrow-left.png" height="30"></button>
                     </div>
                     <!-- Button für eine Woche nach vorne -->
                     <div class="p-1">
-                        <button type="button" class="btn btn-dark px-4" id="plusone"><img src="./images/arrow-right.png" height="30"></button>
+                        <button type="button" class="btn btn-dark px-4" id="plusone" data-toggle="popover" data-trigger="hover" data-content="Eine Woche nach vorne"><img src="./images/arrow-right.png" height="30"></button>
                     </div>
                 </div>
             </div>
@@ -96,6 +96,7 @@
     </div>
 
     <!-- Implementieren von Javascript -->
+    <script src="./js/diverse.js"></script>
     <script src="./js/ajax.js"></script>
     <script src="./js/time.js"></script>
 </body>
