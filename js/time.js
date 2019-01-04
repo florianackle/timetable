@@ -7,6 +7,7 @@ $('.thisyear').html(date.year());
 
 //Wenn Button nach links gedrückt wird (eine Kalenderwoche zurück)
 $('#minusone').on("click", function() {
+
     date.subtract(7, 'days');
     // 3.3 Jahr und Wochennummer
     $('.thisweek').html(date.week());
