@@ -42,21 +42,13 @@
             <div class="wochenplan">
                 <!-- 3.3 Jahr und Wochennummer -->
                 <div class="d-flex flex-row">
+                    <div class="p-1"><h4>Jahr: </h4></div>
                     <div class="p-1">
-                        <h4>Jahr: <script type="text/javascript">
-                                //Anzeige aktuelles Jahr im Header
-                                var today = moment().year();
-                                document.write(today);
-                            </script>
-                        </h4>
+                        <h4 class="thisyear"></h4>
                     </div>
+                    <div class="p-1"><h4>Woche: </h4></div>
                     <div class="p-1">
-                        <h4>/ Woche: <script type="text/javascript">
-                                // Anzeige aktueller KW im Header
-                                var today = moment().week();
-                                document.write(today);
-                            </script>
-                        </h4>
+                        <h4 class="thisweek"></h4>
                     </div>
 
                 </div>
@@ -65,8 +57,9 @@
                     <div class="p-1">
                         <button type="button" class="btn btn-dark px-4" id="minusone"><img src="./images/arrow-left.png" height="30"></button>
                     </div>
+                    <!-- Button für eine Woche nach vorne -->
                     <div class="p-1">
-                        <button type="button" class="btn btn-dark px-4 plusone"><img src="./images/arrow-right.png" height="30"></button>
+                        <button type="button" class="btn btn-dark px-4" id="plusone"><img src="./images/arrow-right.png" height="30"></button>
                     </div>
                 </div>
             </div>
@@ -97,12 +90,8 @@
 
     <!-- Footer -->
     <div id="footer">
-        <footer class="bg-dark text-white text-center font-weight-bold mt-4">
-            <div class="container-fluid py-3">
-                <div class="copyright">
+        <footer class="bg-dark text-white text-center font-weight-bold mt-4 container-fluid py-3 copyright">
                     © Copyright 2019, Florian Ackle
-                </div>
-            </div>
         </footer>
     </div>
 

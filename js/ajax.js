@@ -67,7 +67,7 @@ function getClass(bid) {
             } else if (data.length == 0) { //Falls es keine Klassen gibt
                 //Leeren der vorherigen Tabelle
                 $('.calendarrow').html("");
-                $('.calendarrow').append("<tr><td colspan='7'>Für diesen Beruf gibt es zurzeit keine Klasse.</td></tr>");
+                $('.calendarrow').hide().fadeIn(500).append("<tr><td colspan='7'>Für diesen Beruf gibt es zurzeit keine Klasse.</td></tr>");
             }
             // 5.2 Alle Klassen sind vorhanden und sortiert
             var items = [];
@@ -89,6 +89,17 @@ function getClass(bid) {
     });
 
 }
+
+//durch "setTafel(kid)" Einfüllen der Tafel in die Tabelle
+function fillTafel() {
+    $('.calendarrow').html("");
+    var kid = "";
+    if ($('#klasse-dropdown').val() != -5) {
+        kid = "?klasse_id=" + $('#klasse-dropdown').val() + "&woche=" + date.week() + "-" + date.year();
+    }
+    setTafel(kid);
+}
+
 //Wenn eine Klasse ausgewählt wurde
 //Einfüllen der Tafel in die Tabelle
 // 5.3 Beim Wechsel der Klasse wird der Stundenplan der Klasse in der aktuellen Woche angezeigt.
@@ -100,13 +111,15 @@ function setTafel(kid) {
             console.log("Tafel konnte erfolgreich geladen werden");
             var items = [];
             if (data.length == 0) {
-                $('.calendarrow').append("<tr><th colspan='7'> In dieser Woche wurden keine Daten gefunden. </br>Eventuell findet in dieser woche kein Unterricht statt, oder es wurden für diesen Zeitraum noch keine Daten eingegeben. </th></tr>");
+                $('.calendarrow').fadeOut(200);
+                $('.calendarrow').hide().fadeIn(500).append("<tr><th colspan='7'> In dieser Woche wurden keine Daten gefunden. </br>Eventuell findet in dieser woche kein Unterricht statt, oder es wurden für diesen Zeitraum noch keine Daten eingegeben. </th></tr>");
             } else {
                 $.each(data, function(key, val) {
                     day == val.tafel_wochentag;
                     // 6.1 Datum, Wochentag, von, bis, Lehrer, Fach, Zimmer vorhanden
                     // 6.6 Jahr und Wochennummer wird ausgegeben
-                    $('.calendarrow').append("<tr><th>" + val.tafel_datum + "</th>" + "<th>" + weekday[val.tafel_wochentag] + "</th>" + "<th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
+                    $('.calendarrow').fadeOut(200);
+                    $('.calendarrow').hide().fadeIn(500).append("<tr><th>" + val.tafel_datum + "</th>" + "<th>" + weekday[val.tafel_wochentag] + "</th>" + "<th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
                 });
             }
         }
@@ -119,14 +132,4 @@ function setTafel(kid) {
             alert(xhr.statusText);
         }
     });
-}
-//Falls es nur eine Klasse gibt für den Beruf
-//durch "setTafel(kid)" Einfüllen der Tafel in die Tabelle
-function fillTafel() {
-    $('.calendarrow').html("");
-    var kid = "";
-    if ($('#klasse-dropdown').val() != -5) {
-        kid = "?klasse_id=" + $('#klasse-dropdown').val() + "&woche=" + today;
-    }
-    setTafel(kid);
 }
