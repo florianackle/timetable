@@ -3,8 +3,9 @@
 // 5.4 Die gewählte Berufsgruppe und Klasse ersichtlich.
 $('#beruf-dropdown').append("<option value='-1'> Wählen Sie einen Beruf </option>");
 
-//Heutiger Wochentag (0=Sonntag, 1=Montag, 2=Dienstag etc...)
+// Heutiger Wochentag (0=Sonntag, 1=Montag, 2=Dienstag etc...)
 var day = "";
+var tafel_date = "";
 
 // Setzen der Variable "alertmsg"
 // Sollte die Variable nicht 0 sein, kommt eine Fehlermeldung
@@ -105,7 +106,9 @@ function setTafel(kid) {
                     day == val.tafel_wochentag;
                     // 6.1 Datum, Wochentag, von, bis, Lehrer, Fach, Zimmer vorhanden
                     // 6.6 Jahr und Wochennummer wird ausgegeben
-                    $('.calendarrow').hide().fadeIn(400).append("<tr><th>" + val.tafel_datum + "</th>" + "<th>" + weekday[val.tafel_wochentag] + "</th>" + "<th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
+                    /* Datum wird direkt von YYYY-MM-DD zu DD-MM-YYYY formatiert,
+                       mittels moment().format()*/
+                    $('.calendarrow').hide().fadeIn(400).append("<tr><th>" + moment(val.tafel_datum).format("DD-MM-YYYY") + "</th>" + "<th>" + weekday[val.tafel_wochentag] + "</th>" + "<th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
                 });
             }
         })
