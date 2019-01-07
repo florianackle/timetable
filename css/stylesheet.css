@@ -1,8 +1,12 @@
 /* Die Kommentare dienen zur Verständnis, wieso trotz Bootstrap zusätzlich
 ein eigenes CSS verwendet wurde. */
-/* Hintergrundbild */
 body {
-    background-image: url("../images/bg1.jpg");
+    background-color: inherit;
+}
+
+#default-background {
+    background-image: linear-gradient(to right bottom, black, grey);
+    height: 100%;
 }
 
 /* Damit der Footer immer am Ende der Seite ist */
@@ -10,4 +14,9 @@ body {
     bottom: 0;
     width: 100%;
     position: absolute;
+}
+
+/* Damit beim hovern über das Dropdown ein "pointer-cursor" angezeigt wird */
+.custom-select:hover {
+    cursor: pointer;
 }
