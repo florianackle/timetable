@@ -5,7 +5,7 @@ var tafel_formated = "";
 $('.thisweek').html(date.week());
 $('.thisyear').html(date.year());
 
-// Wenn Button nach links gedrückt wird (eine Kalenderwoche zurück)
+// Wenn Button "minusone" gedrückt wird (eine Kalenderwoche zurück)
 // A.3 Button „zurück“ zeigt den korrekten Stundenplan eine Woche in der Vergangenheit
 $('#minusone').on("click", function() {
     if ($('#klasse-dropdown').val() != -5) {
@@ -20,8 +20,23 @@ $('#minusone').on("click", function() {
     }
 });
 
-// Wenn Buton nach rechts gedrückt wird (nächste Kalenderwoche)
-// A.2 Button „vor“ zeigt den korrekten Stundenplan eine Woche ind er Zukunft
+// Wenn Buton "default-week" gedrückt wird (aktuelle Kalenderwoche)
+
+$('#default-week').on("click", function() {
+    if ($('#klasse-dropdown').val() != -5) {
+        // A.4 Aktualisiertes Jahr und Kalenderwoche werden angezeigt
+        date = moment();
+        // 3.3 Jahr und Wochennummer
+        $('.thisweek').html(date.week());
+        $('.thisyear').html(date.year());
+        fillTafel();
+    } else {
+        alertClass();
+    }
+});
+
+// Wenn Buton "plusone" gedrückt wird (nächste Kalenderwoche)
+// A.2 Button „vor“ zeigt den korrekten Stundenplan eine Woche in der Zukunft
 $('#plusone').on("click", function() {
     if ($('#klasse-dropdown').val() != -5) {
         // A.4 Aktualisiertes Jahr und Kalenderwoche werden angezeigt
