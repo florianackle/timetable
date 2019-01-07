@@ -1,6 +1,6 @@
 // Kalenderwoche + Jahr
-var year = moment();
 var date = moment();
+var tafel_formated = "";
 
 $('.thisweek').html(date.week());
 $('.thisyear').html(date.year());
@@ -8,23 +8,31 @@ $('.thisyear').html(date.year());
 // Wenn Button nach links gedrückt wird (eine Kalenderwoche zurück)
 // A.3 Button „zurück“ zeigt den korrekten Stundenplan eine Woche in der Vergangenheit
 $('#minusone').on("click", function() {
-    // A.4 Aktualisiertes Jahr und Kalenderwoche werden angezeigt
-    date.subtract(7, 'days');
-    // 3.3 Jahr und Wochennummer
-    $('.thisweek').html(date.week());
-    $('.thisyear').html(date.year());
-    fillTafel();
+    if ($('#klasse-dropdown').val() != -5) {
+        // A.4 Aktualisiertes Jahr und Kalenderwoche werden angezeigt
+        date.subtract(7, 'days');
+        // 3.3 Jahr und Wochennummer
+        $('.thisweek').html(date.week());
+        $('.thisyear').html(date.year());
+        fillTafel();
+    } else {
+        alertClass();
+    }
 });
 
 // Wenn Buton nach rechts gedrückt wird (nächste Kalenderwoche)
 // A.2 Button „vor“ zeigt den korrekten Stundenplan eine Woche ind er Zukunft
 $('#plusone').on("click", function() {
-    // A.4 Aktualisiertes Jahr und Kalenderwoche werden angezeigt
-    date.add(7, 'days');
-    // 3.3 Jahr und Wochennummer
-    $('.thisweek').html(date.week());
-    $('.thisyear').html(date.year());
-    fillTafel();
+    if ($('#klasse-dropdown').val() != -5) {
+        // A.4 Aktualisiertes Jahr und Kalenderwoche werden angezeigt
+        date.add(7, 'days');
+        // 3.3 Jahr und Wochennummer
+        $('.thisweek').html(date.week());
+        $('.thisyear').html(date.year());
+        fillTafel();
+    } else {
+        alertClass();
+    }
 });
 
 // Array für die Anzeige der Wochentage
