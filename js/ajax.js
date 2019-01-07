@@ -11,7 +11,7 @@ var day = "";
 // siehe --> diverse.js --> alert();
 var alertmsg = 0;
 
-// 2.1 Datenabfrage
+// 2.1 Datenabfrage mit $.getJSON
 // 4.1 Alle Berufsgruppen sind vorhanden und sortiert
 $.getJSON("http://sandbox.gibm.ch/berufe.php", function(data, status, xhr) {
         var items = [];
@@ -19,12 +19,11 @@ $.getJSON("http://sandbox.gibm.ch/berufe.php", function(data, status, xhr) {
             $('#beruf-dropdown').append("<option value='" + val.beruf_id + "'>" + val.beruf_name + "</option>");
         });
     })
-    // Fehlermeldung, falls AJAX Abfrage nicht erfolgreich war
+    // 2.2 Fehlermeldung, wenn AJAX-Request nicht funktioniert.
     .fail(function() {
         alertmsg = 1;
         alert();
     });
-
 // Sobald alle Berufe geladen wurden, getClass ausführen
 // Parameter leer, damit alle Klassen gezeigt werden.
 getClass("");
@@ -53,7 +52,7 @@ $('#klasse-dropdown').on('change', function() {
 // Zeigt alle Klassen im Dropdown an
 // Falls nur eine Klasse vorhanden ist, wähle diese aus
 function getClass(bid) {
-    // 2.1 Datenabfrage
+    // 2.1 Datenabfrage mit $.getJSON
     $.getJSON("http://sandbox.gibm.ch/klassen.php" + bid, function(data, status, xhr) {
             // Falls mehr als eine Klasse zurück kommt
             if (data.length > 1) {
@@ -73,12 +72,12 @@ function getClass(bid) {
             if (data.length == 1) {
                 fillTafel();
             }
-    })
-    // Fehlermeldung, falls AJAX Abfrage nicht erfolgreich war
-    .fail(function() {
-        alertmsg = 2;
-        alert();
-    });
+        })
+        // 2.2 Fehlermeldung, wenn AJAX-Request nicht funktioniert.
+        .fail(function() {
+            alertmsg = 2;
+            alert();
+        });
 }
 
 //durch "setTafel(kid)" Einfüllen der Tafel in die Tabelle
@@ -95,10 +94,11 @@ function fillTafel() {
 // Einfüllen der Tafel in die Tabelle
 // 5.3 Beim Wechsel der Klasse wird der Stundenplan der Klasse in der aktuellen Woche angezeigt.
 function setTafel(kid) {
-    // 2.1 Datenabfrage
+    // 2.1 Datenabfrage mit $.getJSON
     $.getJSON("http://sandbox.gibm.ch/tafel.php/" + kid, function(data, status, xhr) {
             var items = [];
             if (data.length == 0) {
+                // A.5 Bei Ferien wird eine sinvolle Meldung angezeigt
                 $('.calendarrow').hide().fadeIn(400).append("<tr><th colspan='7'> In dieser Woche wurden keine Daten gefunden. </br>Eventuell findet in dieser woche kein Unterricht statt, oder es wurden für diesen Zeitraum noch keine Daten eingegeben. </th></tr>");
             } else {
                 $.each(data, function(key, val) {
@@ -109,8 +109,9 @@ function setTafel(kid) {
                 });
             }
         })
-    .fail(function() {
-        alertmsg = 3;
-        alert();
-    });
+        // 2.2 Fehlermeldung, wenn AJAX-Request nicht funktioniert.
+        .fail(function() {
+            alertmsg = 3;
+            alert();
+        });
 }
