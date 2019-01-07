@@ -16,6 +16,13 @@ https://sites.google.com/a/gibmit.ch/modul-133-stoecklin-2018-hs/projektabeit
 # :wrench: Projekt ist noch in Arbeit
 An dem Projekt wird zur Zeit fleissig weitergearbeitet
 
+# :construction: Funktionen
+Die Grundfunktionen des Stundenplans funktionieren bereits.
+Man kann entweder einen Beruf und anschliessend eine Klasse oder direkt eine Klasse auswählen.
+Grundsätzlich wird der Stundenplan der aktuellen Kalenderwoche angezeigt, ausser man wechselt die Kalenderwoche.
+Sollten keine Daten vorhanden sein, wird der Benutzer darüber informiert.
+Wenn eine der AJAX-Abfragen Fehlgeschlagen ist, erhält der Benutzer ebenfalls eine Nachricht auf dem Bildschirm.
+
 # :bug: Bug-frei
 Das Programm ist von Bugs befreit. Es werden nur vollständig funktionierende Versionen "commited"
 
