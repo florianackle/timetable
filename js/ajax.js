@@ -7,6 +7,8 @@ $('#beruf-dropdown').append("<option value='-1'> Wählen Sie einen Beruf </optio
 var day = "";
 
 // Setzen der Variable "alertmsg"
+// Sollte die Variable nicht 0 sein, kommt eine Fehlermeldung
+// siehe --> diverse.js --> alert();
 var alertmsg = 0;
 
 // 2.1 Datenabfrage
@@ -23,40 +25,40 @@ $.getJSON("http://sandbox.gibm.ch/berufe.php", function(data, status, xhr) {
         alert();
     });
 
-//Sobald alle Berufe geladen wurden, getClass ausführen
-//Parameter leer, damit alle Klassen gezeigt werden.
+// Sobald alle Berufe geladen wurden, getClass ausführen
+// Parameter leer, damit alle Klassen gezeigt werden.
 getClass("");
 
-//Falls sich etwas ändert im dropdown "beruf-dropdown"
-//Ein Beruf wurde gewählt
+// Falls sich etwas ändert im dropdown "beruf-dropdown"
+// Ein Beruf wurde gewählt
 // 4.2 Bei jedem Wechsel der Berufsgruppe werden die Daten in der Klassen-Auswahl neu geladen
 $('#beruf-dropdown').on('change', function() {
-    //Tafel und Klassenauswahl leeren
+    // Tafel und Klassenauswahl leeren
     // 4.3 Der Stundenplan wird ausgeblendet, wenn die Berufsgruppe verändert wird.
     $('.calendarrow').html("");
     $('#klasse-dropdown').html("");
     var bid = "";
-    //Setzen des Strings (nach http://sandbox.gibm.ch/klassen.php)
+    // Setzen des Strings (nach http://sandbox.gibm.ch/klassen.php)
     if ($('#beruf-dropdown').val() != -1) {
         bid = "?beruf_id=" + $('#beruf-dropdown').val();
     }
-    //führe getClass mit dem Parameter bid aus
+    // führe getClass mit dem Parameter bid aus
     getClass(bid);
 });
-//Falls sich etwas ändert im dropdown "klasse-dropdown"
-//Eine Klasse wurde gewählt
+// Falls sich etwas ändert im dropdown "klasse-dropdown"
+// Eine Klasse wurde gewählt
 $('#klasse-dropdown').on('change', function() {
     fillTafel();
 })
-//Zeigt alle Klassen im Dropdown an
-//Falls nur eine Klasse vorhanden ist, wähle diese aus
+// Zeigt alle Klassen im Dropdown an
+// Falls nur eine Klasse vorhanden ist, wähle diese aus
 function getClass(bid) {
     // 2.1 Datenabfrage
     $.getJSON("http://sandbox.gibm.ch/klassen.php" + bid, function(data, status, xhr) {
-            //Falls mehr als eine Klasse zurück kommt
+            // Falls mehr als eine Klasse zurück kommt
             if (data.length > 1) {
-                //Setze "Wählen Sie eine Klasse" erneut
-                //Für manuelles wählen der Klasse
+                // Setze "Wählen Sie eine Klasse" erneut
+                // Für manuelles wählen der Klasse
                 $('#klasse-dropdown').append("<option value='-5'> Wählen Sie eine Klasse </option>");
             } else if (data.length == 0) { //Falls es keine Klassen gibt
                 //Leeren der vorherigen Tabelle
@@ -89,8 +91,8 @@ function fillTafel() {
     setTafel(kid);
 }
 
-//Wenn eine Klasse ausgewählt wurde
-//Einfüllen der Tafel in die Tabelle
+// Wenn eine Klasse ausgewählt wurde
+// Einfüllen der Tafel in die Tabelle
 // 5.3 Beim Wechsel der Klasse wird der Stundenplan der Klasse in der aktuellen Woche angezeigt.
 function setTafel(kid) {
     // 2.1 Datenabfrage

@@ -1,11 +1,11 @@
-//Kalenderwoche + Jahr
+// Kalenderwoche + Jahr
 var year = moment();
 var date = moment();
 
 $('.thisweek').html(date.week());
 $('.thisyear').html(date.year());
 
-//Wenn Button nach links gedrückt wird (eine Kalenderwoche zurück)
+// Wenn Button nach links gedrückt wird (eine Kalenderwoche zurück)
 $('#minusone').on("click", function() {
 
     date.subtract(7, 'days');
@@ -15,7 +15,7 @@ $('#minusone').on("click", function() {
     fillTafel();
 });
 
-//Wenn Buton nach rechts gedrückt wird (nächste Kalenderwoche)
+// Wenn Buton nach rechts gedrückt wird (nächste Kalenderwoche)
 $('#plusone').on("click", function() {
     date.add(7, 'days');
     // 3.3 Jahr und Wochennummer
@@ -24,7 +24,8 @@ $('#plusone').on("click", function() {
     fillTafel();
 });
 
-//Array für die Anzeige der Wochentage
+// Array für die Anzeige der Wochentage
+// 0 = Sonntag da Montag der erste Wochentag ist
 const weekday = new Array(7);
 weekday[0] = "Sonntag";
 weekday[1] = "Montag";
