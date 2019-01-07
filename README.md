@@ -9,3 +9,6 @@ Als Datenquelle dient Ihnen eine bestehende JSON-Schnittstelle, welche Sie über
 können.
 
 https://sites.google.com/a/gibmit.ch/modul-133-stoecklin-2018-hs/projektabeit
+
+# Copyright
+Dieser Stundenplan wurde von © Florian Ackle erstellt und darf nicht öffentlich verwendet werden.
