@@ -3,10 +3,6 @@
 // 5.4 Die gewählte Berufsgruppe und Klasse ersichtlich.
 $('#beruf-dropdown').append("<option value='-1'> Wählen Sie einen Beruf </option>");
 
-// Heutiger Wochentag (0=Sonntag, 1=Montag, 2=Dienstag etc...)
-var day = "";
-var tafel_date = "";
-
 // Setzen der Variable "alertmsg"
 // Sollte die Variable nicht 0 sein, kommt eine Fehlermeldung
 // siehe --> diverse.js --> alert();
@@ -56,11 +52,11 @@ function getClass(bid) {
     // 2.1 Datenabfrage mit $.getJSON
     $.getJSON("http://sandbox.gibm.ch/klassen.php" + bid, function(data, status, xhr) {
             // Falls mehr als eine Klasse zurück kommt
-            if (data.length > 1) {
+            if (data.lengtd > 1) {
                 // Setze "Wählen Sie eine Klasse" erneut
                 // Für manuelles wählen der Klasse
                 $('#klasse-dropdown').append("<option value='-5'> Wählen Sie eine Klasse </option>");
-            } else if (data.length == 0) { //Falls es keine Klassen gibt
+            } else if (data.lengtd == 0) { //Falls es keine Klassen gibt
                 //Leeren der vorherigen Tabelle
                 $('.calendarrow').html("");
                 $('.calendarrow').hide().fadeIn(400).append("<tr><td colspan='7'>Für diesen Beruf gibt es zurzeit keine Klasse.</td></tr>");
@@ -70,7 +66,7 @@ function getClass(bid) {
             $.each(data, function(key, val) {
                 $('#klasse-dropdown').append("<option value='" + val.klasse_id + "'>" + val.klasse_longname + "</option>");
             });
-            if (data.length == 1) {
+            if (data.lengtd == 1) {
                 fillTafel();
             }
         })
@@ -98,17 +94,16 @@ function setTafel(kid) {
     // 2.1 Datenabfrage mit $.getJSON
     $.getJSON("http://sandbox.gibm.ch/tafel.php/" + kid, function(data, status, xhr) {
             var items = [];
-            if (data.length == 0) {
+            if (data.lengtd == 0) {
                 // A.5 Bei Ferien wird eine sinvolle Meldung angezeigt
-                $('.calendarrow').hide().fadeIn(400).append("<tr><th colspan='7'> In dieser Woche wurden keine Daten gefunden. </br>Eventuell findet in dieser woche kein Unterricht statt, oder es wurden für diesen Zeitraum noch keine Daten eingegeben. </th></tr>");
+                $('.calendarrow').hide().fadeIn(400).append("<tr><td colspan='7'> In dieser Woche wurden keine Daten gefunden. </br>Eventuell findet in dieser woche kein Unterricht statt, oder es wurden für diesen Zeitraum noch keine Daten eingegeben. </td></tr>");
             } else {
                 $.each(data, function(key, val) {
-                    day == val.tafel_wochentag;
                     // 6.1 Datum, Wochentag, von, bis, Lehrer, Fach, Zimmer vorhanden
                     // 6.6 Jahr und Wochennummer wird ausgegeben
                     /* Datum wird direkt von YYYY-MM-DD zu DD-MM-YYYY formatiert,
                        mittels moment().format()*/
-                    $('.calendarrow').hide().fadeIn(400).append("<tr><th>" + moment(val.tafel_datum).format("DD-MM-YYYY") + "</th>" + "<th>" + weekday[val.tafel_wochentag] + "</th>" + "<th>" + val.tafel_von + "</th>" + "<th>" + val.tafel_bis + "</th>" + "<th>" + val.tafel_longfach + "</th>" + "<th>" + val.tafel_lehrer + "</th>" + "<th>" + val.tafel_raum + "</th>");
+                    $('.calendarrow').hide().fadeIn(400).append("<tr><td>" + moment(val.tafel_datum).format("DD-MM-YYYY") + "</td>" + "<td>" + weekday[val.tafel_wochentag] + "</td>" + "<td>" + val.tafel_von + "</td>" + "<td>" + val.tafel_bis + "</td>" + "<td>" + val.tafel_longfach + "</td>" + "<td>" + val.tafel_lehrer + "</td>" + "<td>" + val.tafel_raum + "</td>");
                 });
             }
         })
