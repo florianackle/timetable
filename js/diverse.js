@@ -70,3 +70,11 @@ function alert() {
             })
     }
 }
+
+function alertClass() {
+    swal({
+        title: "Wählen Sie eine Klasse aus",
+        text: "Bitte wählen Sie zuerst eine Klasse aus, bevor Sie die Kalenderwoche wechseln",
+        icon: "info"
+    })
+}
