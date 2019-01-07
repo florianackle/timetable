@@ -2,7 +2,7 @@
 Schulprojekt vom Modul 133.
 
 # :bookmark: Version
-Die aktuelle Programm Version ist 1.0.1 
+Die aktuelle Programm Version ist 1.0.2 
 
 # :construction_worker: Ausgangslage:
 Sie erhalten den Auftrag, eine Webapplikation zur Ansicht eines Stundenplans Ihrer Schule zu
