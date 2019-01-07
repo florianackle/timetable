@@ -10,7 +10,7 @@ var alertmsg = 0;
 
 // 2.1 Datenabfrage mit $.getJSON
 // 4.1 Alle Berufsgruppen sind vorhanden und sortiert
-$.getJSON("http://sandbox.gibm.ch/berufe.php", function(data, status, xhr) {
+$.getJSON("http://sandbox.gibm.ch/berufe.php", function(data) {
         var items = [];
         $.each(data, function(key, val) {
             $('#beruf-dropdown').append("<option value='" + val.beruf_id + "'>" + val.beruf_name + "</option>");
@@ -50,13 +50,13 @@ $('#klasse-dropdown').on('change', function() {
 // Falls nur eine Klasse vorhanden ist, wähle diese aus
 function getClass(bid) {
     // 2.1 Datenabfrage mit $.getJSON
-    $.getJSON("http://sandbox.gibm.ch/klassen.php" + bid, function(data, status, xhr) {
+    $.getJSON("http://sandbox.gibm.ch/klassen.php" + bid, function(data) {
             // Falls mehr als eine Klasse zurück kommt
-            if (data.lengtd > 1) {
+            if (data.length > 1) {
                 // Setze "Wählen Sie eine Klasse" erneut
                 // Für manuelles wählen der Klasse
                 $('#klasse-dropdown').append("<option value='-5'> Wählen Sie eine Klasse </option>");
-            } else if (data.lengtd == 0) { //Falls es keine Klassen gibt
+            } else if (data.length == 0) { //Falls es keine Klassen gibt
                 //Leeren der vorherigen Tabelle
                 $('.calendarrow').html("");
                 $('.calendarrow').hide().fadeIn(400).append("<tr><td colspan='7'>Für diesen Beruf gibt es zurzeit keine Klasse.</td></tr>");
@@ -66,7 +66,7 @@ function getClass(bid) {
             $.each(data, function(key, val) {
                 $('#klasse-dropdown').append("<option value='" + val.klasse_id + "'>" + val.klasse_longname + "</option>");
             });
-            if (data.lengtd == 1) {
+            if (data.length == 1) {
                 fillTafel();
             }
         })
@@ -92,9 +92,9 @@ function fillTafel() {
 // 5.3 Beim Wechsel der Klasse wird der Stundenplan der Klasse in der aktuellen Woche angezeigt.
 function setTafel(kid) {
     // 2.1 Datenabfrage mit $.getJSON
-    $.getJSON("http://sandbox.gibm.ch/tafel.php/" + kid, function(data, status, xhr) {
+    $.getJSON("http://sandbox.gibm.ch/tafel.php/" + kid, function(data) {
             var items = [];
-            if (data.lengtd == 0) {
+            if (data.length == 0) {
                 // A.5 Bei Ferien wird eine sinvolle Meldung angezeigt
                 $('.calendarrow').hide().fadeIn(400).append("<tr><td colspan='7'> In dieser Woche wurden keine Daten gefunden. </br>Eventuell findet in dieser woche kein Unterricht statt, oder es wurden für diesen Zeitraum noch keine Daten eingegeben. </td></tr>");
             } else {
@@ -103,7 +103,7 @@ function setTafel(kid) {
                     // 6.6 Jahr und Wochennummer wird ausgegeben
                     /* Datum wird direkt von YYYY-MM-DD zu DD-MM-YYYY formatiert,
                        mittels moment().format()*/
-                    $('.calendarrow').hide().fadeIn(400).append("<tr><td>" + moment(val.tafel_datum).format("DD-MM-YYYY") + "</td>" + "<td>" + weekday[val.tafel_wochentag] + "</td>" + "<td>" + val.tafel_von + "</td>" + "<td>" + val.tafel_bis + "</td>" + "<td>" + val.tafel_longfach + "</td>" + "<td>" + val.tafel_lehrer + "</td>" + "<td>" + val.tafel_raum + "</td>");
+                    $('.calendarrow').hide().fadeIn(400).append("<tr><td>" + moment(val.tafel_datum).format("DD-MM-YYYY") + "</td>" + "<td>" + weekday[val.tafel_wochentag] + "</td>" + "<td>" + moment(val.tafel_von, "HH:mm:ss").format("HH:mm") + "</td>" + "<td>" + moment(val.tafel_bis, "HH:mm:ss").format("HH:mm") + "</td>" + "<td>" + val.tafel_longfach + "</td>" + "<td>" + val.tafel_lehrer + "</td>" + "<td>" + val.tafel_raum + "</td>");
                 });
             }
         })
