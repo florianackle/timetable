@@ -30,8 +30,6 @@ $('#default-week').on("click", function() {
         $('.thisweek').html(date.week());
         $('.thisyear').html(date.year());
         fillTafel();
-    } else {
-        alertClass();
     }
 });
 
