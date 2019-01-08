@@ -103,7 +103,7 @@ function setTafel(kid) {
                     // 6.6 Jahr und Wochennummer wird ausgegeben
                     /* Datum wird direkt von YYYY-MM-DD zu DD-MM-YYYY formatiert,
                        mittels moment().format()*/
-                    $('.calendarrow').hide().fadeIn(400).append("<tr><td>" + moment(val.tafel_datum).format("DD-MM-YYYY") + "</td>" + "<td>" + weekday[val.tafel_wochentag] + "</td>" + "<td>" + moment(val.tafel_von, "HH:mm:ss").format("HH:mm") + "</td>" + "<td>" + moment(val.tafel_bis, "HH:mm:ss").format("HH:mm") + "</td>" + "<td>" + val.tafel_longfach + "</td>" + "<td>" + val.tafel_lehrer + "</td>" + "<td>" + val.tafel_raum + "</td>");
+                    $('.calendarrow').hide().fadeIn(400).append("<tr><td>" + moment(val.tafel_datum).format("DD.MM.YYYY") + "</td>" + "<td>" + weekday[val.tafel_wochentag] + "</td>" + "<td>" + moment(val.tafel_von, "HH:mm:ss").format("HH:mm") + "</td>" + "<td>" + moment(val.tafel_bis, "HH:mm:ss").format("HH:mm") + "</td>" + "<td>" + val.tafel_longfach + "</td>" + "<td>" + val.tafel_lehrer + "</td>" + "<td>" + val.tafel_raum + "</td>");
                 });
             }
         })
