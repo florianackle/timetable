@@ -34,16 +34,19 @@ Das Programm ist von Bugs befreit. Es werden nur vollständig funktionierende Ve
 
 # :package: Verwendete Pakete
 Folgende Pakete wurden verwendet:
-- popper.js [https://popper.js.org/]
-- moment.js [https://momentjs.com/]
-- sweetalert.js [https://sweetalert.js.org/]
-- Bootstrap 4 [https://getbootstrap.com/]
-- jQuery 3.1.1 [https://jquery.com/]
+- [popper.js] (https://popper.js.org/)
+- [moment.js] (https://momentjs.com/)
+- [sweetalert.js] (https://sweetalert.js.org/)
+- [Bootstrap 4] (https://getbootstrap.com/)
+- [jQuery 3.1.1] (https://jquery.com/)
 
 # :lock: Copyright
 Dieser Stundenplan wurde von © Florian Ackle erstellt.</br>
 Bitte kopiere diesen Code nicht... ausser du gibst mir einen :cookie:
 </br>
 Ansonsten... lass die Finger :point_left: davon.
+
+# :date: Last Update
+> 08.01.2019
 
 # :rocket: Have fun!
