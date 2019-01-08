@@ -13,6 +13,7 @@ var alertmsg = 0;
 $.getJSON("http://sandbox.gibm.ch/berufe.php", function(data) {
         var items = [];
         $.each(data, function(key, val) {
+            // Berufe im Dropdown anzeigen
             $('#beruf-dropdown').append("<option value='" + val.beruf_id + "'>" + val.beruf_name + "</option>");
         });
     })
@@ -29,6 +30,10 @@ getClass("");
 // Ein Beruf wurde gewählt
 // 4.2 Bei jedem Wechsel der Berufsgruppe werden die Daten in der Klassen-Auswahl neu geladen
 $('#beruf-dropdown').on('change', function() {
+    // Buttons aktivieren
+    $('#minusone').prop("disabled", false);
+    $('#plusone').prop("disabled", false);
+    $('#default-week').prop("disabled", false);
     // Tafel und Klassenauswahl leeren
     // 4.3 Der Stundenplan wird ausgeblendet, wenn die Berufsgruppe verändert wird.
     $('.calendarrow').html("");
@@ -60,6 +65,10 @@ function getClass(bid) {
                 //Leeren der vorherigen Tabelle
                 $('.calendarrow').html("");
                 $('.calendarrow').hide().fadeIn(400).append("<tr><td colspan='7'>Für diesen Beruf gibt es zurzeit keine Klasse.</td></tr>");
+                // Buttons deaktivieren
+                $('#minusone').prop("disabled", true);
+                $('#plusone').prop("disabled", true);
+                $('#default-week').prop("disabled", true);
             }
             // 5.2 Alle Klassen sind vorhanden und sortiert
             var items = [];
