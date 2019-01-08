@@ -33,7 +33,7 @@
             <!-- Wochenplan + Kalender -->
             <div class="wochenplan">
                 <!-- 3.3 Jahr und Wochennummer -->
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row justify-content-center">
                     <div class="p-1">
                         <h4>Jahr: </h4>
                     </div>
@@ -48,26 +48,26 @@
                     </div>
 
                 </div>
-                <div class="d-flex flex-rowp-1 p-1">
+                <div class="d-flex flex-rowp-1 p-1 justify-content-center">
                     <!-- Button für eine Woche zurück -->
                     <!-- A.1 Button vor und zurück sind vorhanden und sinnvoll beschriftet. -->
                     <div class="p-1">
-                        <button type="button" class="btn btn-dark px-4" id="minusone" data-toggle="tooltip" title="Eine Woche zurück" data-placement="left"><img src="./images/arrow-left.png" height="20"></button>
+                        <button type="button" class="btn btn-dark" id="minusone" data-toggle="tooltip" title="Eine Woche zurück" data-placement="left"><img src="./images/arrow-left.png" height="20"></button>
                     </div>
                     <!-- Button für aktuelle Kalenderwoche -->
                     <div class="p-1">
-                        <button type="button" class="btn btn-dark px-4">Aktuelle KW</button>
+                        <button type="button" class="btn btn-dark" id="default-week" >Aktuelle KW</button>
                     </div>
                     <!-- Button für eine Woche nach vorne -->
                     <!-- A.1 Button vor und zurück sind vorhanden und sinnvoll beschriftet. -->
                     <div class="p-1">
-                        <button type="button" class="btn btn-dark px-4" id="plusone" data-toggle="tooltip" title="Eine Woche nach vorne" data-placement="right"><img src="./images/arrow-right.png" height="20"></button>
+                        <button type="button" class="btn btn-dark" id="plusone" data-toggle="tooltip" title="Eine Woche nach vorne" data-placement="right"><img src="./images/arrow-right.png" height="20"></button>
                     </div>
                 </div>
             </div>
             <!-- 3.4 Tabellarische Darstellungen Stundeplan -->
             <!-- Tabelle für Stundenplan-->
-            <div class="wochenansicht p-2">
+            <div class="wochenansicht p-1">
                 <table class="table table-hover table-dark">
                     <thead>
                         <tr>
